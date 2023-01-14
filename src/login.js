@@ -1,41 +1,30 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { useCookies } from "react-cookie";
-const Loginform = () =>{
-  const [cookie, setCookies] = useCookies(['user']);
-    const loged = (e) =>{
-        //e.preventDefault();
-        const inputs = {
-          "userid": "APNA70001",
-          "password":"apnaretro001"
-        };
-        axios.get(`https://sattasafari.com/restro/login.php?userid=${inputs.userid}&password=${inputs.password}`).then(function(response){
-          console.log(response.data);
-          if(Array.isArray(response.data)){
-            setCookies("user",response.data);
-            console.log(cookie);
-          }
-          if(response.data.message==="Already Login"){
-            alert(response.data.message);
-          }
-        });
-      }
-      useEffect(() => {
-        getUsers();
-    }, []);
-    function getUsers() {
-        axios.get(`https://sattasafari.com/restro/login.php`).then(function(response) {
-            console.log(response.data);
-            if(response.data.message==="Already Login"){
-              alert(response.data.message);
-            }
-        });
-    }
-      return(
+import { useSelector, useDispatch } from 'react-redux';
+import { Login } from './action/index';
+import { useNavigate } from "react-router-dom";
+const Loginform = () =>{  
+  const formdata = useSelector((state) => state.formData);
+  const [data, setData] = useState({
+    name: "Prince Kurmi",
+    password:"hello"
+  });
+  const navigate  = useNavigate();
+  useEffect(() => {
+    localStorage.getItem('Name');
+    getUsers();
+},[]);
+function getUsers() {
+  const length = formdata.length;
+     console.log(formdata.length);
+   }
+  const dispatch = useDispatch();
+  console.log(formdata.length);
+ return(
         <>
-           <main style={{marginTop: '58px'}}>
+          <main style={{marginTop: '58px'}}>
         <div className="container pt-4">
-        <button onClick={loged}>Click</button>
+        <button onClick={()=>dispatch(Login(data))}>Click</button>
         </div>
         </main>
         </>
