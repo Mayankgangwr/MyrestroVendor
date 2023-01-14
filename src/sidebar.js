@@ -1,15 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './sidebar.css';
-import {NavLink} from 'react-router-dom';
+import {Outlet , NavLink, useNavigate} from 'react-router-dom';
 function Sidebar() {
-   
+  const [auth, setAuth] = useState("");
+  const navigate = useNavigate();
+  useEffect(()=>{
+      var emaildata = localStorage.getItem('restrotitle');
+      setAuth(emaildata); 
+      if(localStorage.getItem('restrotitle')===null){
+          navigate('/');
+      }  
+  });   
   return(
     <>
   <header>
   <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white">
     <div className="position-sticky">
       <div className="list-group list-group-flush mt-4">
-        <NavLink exact activeClassName="active" to="/" className="list-group-item list-group-item-action side-item-p ripple">
+        <NavLink exact activeClassName="active" to="/dashboard" className="list-group-item list-group-item-action side-item-p ripple">
             <img src="./images/dashboard.png" width='17' className='sidebar-icon'/><span>Dashboard</span>
         </NavLink>
         <NavLink activeClassName="active" to="/order" className="list-group-item list-group-item-action side-item-p ripple">
@@ -120,6 +128,7 @@ function Sidebar() {
     </div>
   </nav>
 </header>
+<Outlet />
 </>
   );
 }

@@ -1,5 +1,19 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import {ReadOrder} from './action/index';
+import { useSelector, useDispatch } from 'react-redux';
 const Orders = ()=>{
+    const orderdata = useSelector((state) => state.OrderData);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const data = {
+            restroid:localStorage.getItem('restroid')
+        }
+        axios.post("https://sattasafari.com/restro/order/read.php", data)
+        .then(function (response) {  
+           console.log(response.data);
+           dispatch(ReadOrder(response.data));
+        });
+    }, []);
     return (
         <>
         <main style={{marginTop: '58px'}}>

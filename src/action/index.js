@@ -4,3 +4,9 @@ export const Login = (data) => {
         payload: data
     }
 }
+export const ReadOrder = (data) => {
+    return {
+        type: "ReadOrder",
+        payload: data
+    }
+}

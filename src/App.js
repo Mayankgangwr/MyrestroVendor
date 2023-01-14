@@ -15,15 +15,16 @@ function App() {
 
   return(
   <>
-  <BrowserRouter>
-  <Sidebar />
+  <BrowserRouter>        
       <Routes>
-        <Route index element={<Loginform/>} />
-        <Route path='home' element={<Home />} />
+      <Route index element={<Loginform/>} />
+        <Route path='/' element={<Sidebar />}>
+        <Route path='dashboard' element={<Home />} />
         <Route path='order' element={<Orders />} />
         {/*<Route path='categories' element={<Category />} />
         <Route path='products' element={<Products />} />*/
   }
+    </Route>
       </Routes>
     </BrowserRouter>
   </>
