@@ -1,19 +1,19 @@
 import React,{useEffect} from 'react';
 import {ReadOrder} from './action/index';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 const Orders = ()=>{
     const orderdata = useSelector((state) => state.OrderData);
     const dispatch = useDispatch();
     useEffect(() => {
-        const data = {
-            restroid:localStorage.getItem('restroid')
-        }
-        axios.post("https://sattasafari.com/restro/order/read.php", data)
-        .then(function (response) {  
-           console.log(response.data);
-           dispatch(ReadOrder(response.data));
-        });
+        getUsers();
     }, []);
+    function getUsers(){
+        axios.get("https://sattasafari.com/restro/order/read.php")
+        .then(function (response) {
+           console.log(response.data);
+        });
+    }
     return (
         <>
         <main style={{marginTop: '58px'}}>
