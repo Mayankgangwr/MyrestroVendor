@@ -1,13 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import 'jquery/dist/jquery.min.js';
-import "datatables.net-dt/js/dataTables.dataTables"
-import "datatables.net-dt/css/jquery.dataTables.min.css"
-import $ from 'jquery'; 
 import axios from 'axios';
 const Category = ()=>{
-    $(document).ready(function() {
-        $('#dataTable').DataTable();
-    } );
     useEffect(() => {
       getUsers();
   }, []);

@@ -7,9 +7,9 @@ const Loginform = () =>{
           "userid": "APNA70001",
           "password":"apnaretro001"
         };
-        axios.post(`https://sattasafari.com/restro/login.php?userid=${inputs.userid}&password=${inputs.password}`,
+        axios.get(`https://sattasafari.com/restro/login.php?userid=${inputs.userid}&password=${inputs.password}`,
          inputs).then(function(response){
-            console.log(response.data);
+            console.log(response);
         });
       }
       return(
