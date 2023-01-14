@@ -7,11 +7,24 @@ const Loginform = () =>{
           "userid": "APNA70001",
           "password":"apnaretro001"
         };
-        axios.get(`https://sattasafari.com/restro/login.php?userid=${inputs.userid}&password=${inputs.password}`,
-         inputs).then(function(response){
-            console.log(response);
+        axios.get(`https://sattasafari.com/restro/login.php?userid=${inputs.userid}&password=${inputs.password}`).then(function(response){
+          console.log(response.data);
+          if(Array.isArray(response.data)){
+            alert("got");
+          }
         });
       }
+      useEffect(() => {
+        getUsers();
+    }, []);
+    function getUsers() {
+        axios.get(`https://sattasafari.com/restro/login.php`).then(function(response) {
+            console.log(response.data);
+            if(response.data.message==="Already Login"){
+              alert(response.data.message);
+            }
+        });
+    }
       return(
         <>
         <button onClick={loged}>Click</button>
