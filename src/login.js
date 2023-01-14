@@ -12,6 +12,9 @@ const Loginform = () =>{
           if(Array.isArray(response.data)){
             alert("got");
           }
+          if(response.data.message==="Already Login"){
+            alert(response.data.message);
+          }
         });
       }
       useEffect(() => {
