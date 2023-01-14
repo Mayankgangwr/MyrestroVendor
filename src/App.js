@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Orders from './order';
 import Category from './category';
 import Products from './products';
+import Loginform from './login';
 import axios from 'axios';
 
 
@@ -17,7 +18,8 @@ function App() {
   <BrowserRouter>
   <Sidebar />
       <Routes>
-        <Route index element={<Home />} />
+        <Route index element={<Loginform/>} />
+        <Route path='home' element={<Home />} />
         <Route path='order' element={<Orders />} />
         {/*<Route path='categories' element={<Category />} />
         <Route path='products' element={<Products />} />*/
