@@ -21,9 +21,8 @@ function App() {
         <Route path='/' element={<Sidebar />}>
         <Route path='dashboard' element={<Home />} />
         <Route path='order' element={<Orders />} />
-        {/*<Route path='categories' element={<Category />} />
-        <Route path='products' element={<Products />} />*/
-  }
+        <Route path='categories' element={<Category />} />
+        <Route path='products' element={<Products />} />
     </Route>
       </Routes>
     </BrowserRouter>
