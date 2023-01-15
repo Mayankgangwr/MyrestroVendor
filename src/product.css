@@ -16,3 +16,7 @@
 .card:hover .pro-icon{
     display: block;
 }
+.card-item{
+    box-shadow: 1px 0px 4px #797a7c;
+    border-radius: 10px;
+}
