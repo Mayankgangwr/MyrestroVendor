@@ -18,6 +18,7 @@ const Products = ()=>{
     }
     useEffect(() => {
         getPro()
+        getCat()
     }, []);
     function getPro(){
         const data = {
@@ -29,9 +30,31 @@ const Products = ()=>{
            dispatch(ReadOrder(response.data));
         });
     }
-    const prodata = orderdata.filter((item)=>{
-            return item.cat_id==filter.category;
-    });
+    function getCat(){
+        const data = {
+            restroid:localStorage.getItem('restroid')
+        }
+        axios.post("https://sattasafari.com/restro/category/read.php", data)
+        .then(function (response) {
+            setCategory(response.data);
+        });
+    }
+    const searchdata = orderdata.filter((item) => {
+        if (filter.proname !== "") {
+          const Title = item.title.toUpperCase();
+          const pro_name = filter.proname.toUpperCase();
+          return Title.includes(pro_name);
+        } else {
+          return item.title !== filter.proname;
+        }
+      });
+      const sdata = searchdata.filter((item) => {
+        if (filter.category !== "") {
+          return item.cat_id === filter.category;
+        } else {
+          return item.cat_id !== filter.category;
+        }
+      });
     return (
         <>
         <main style={{marginTop: '58px'}}>
@@ -50,7 +73,9 @@ const Products = ()=>{
         <div className='col-6'>
             <select className='form-control' style={{borderRadius:'10px'}} onChange={handleChange} name='category'>
                 <option value=''>Select Category</option>
-                <option value='1'>FastFood</option>
+                {category.map(({id, title})=>(
+                    <option value={id}>{title}</option>
+                ))}
             </select>
         </div>
         <div className='col-6'>
@@ -58,7 +83,7 @@ const Products = ()=>{
         </div>
         </div>
         <div className='blockborder row'>
-        {prodata.map((el)=>(
+        {sdata.map((el)=>(
                     <div key={el.id} className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3">
                     <div className="card card-item ">
                         <div className="card-body p-2">

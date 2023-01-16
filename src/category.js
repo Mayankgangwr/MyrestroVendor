@@ -1,54 +1,53 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 const Category = ()=>{
-    useEffect(() => {
-      getUsers();
-  }, []);
-  const [catdata, setCatdata] =  useState("");
-  function getUsers() {
-      axios.get(`https://sattasafari.com/restro/readcat.php`).then(function(response) {
-          setCatdata(response.data);
-      });
-  }
-  console.log(catdata);
+
     return (
         <>
         <main style={{marginTop: '58px'}}>
         <div className="container-fluid pt-4">
         <nav  aria-label="breadcrumb" className="pathhistory">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+            <ol className="breadcrumb">
+                <li className="breadcrumb-item">
                     <a href="#" className='nav-link'>
-                        <i class="fas fa-globe small me-2"></i> Dashboard
+                        <i className="fas fa-globe small me-2"></i> Dashboard
                     </a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Category</li>
+                <li className="breadcrumb-item active" aria-current="page">Category</li>
             </ol>
         </nav>
-        <div className="col-12 blockborder">   
-        <table id="dataTable" className="table table-striped table-bordered nowrap" cellspacing="0"  style={{width:"100%", border:'1px solid #7e7a7a'}}>
-           <thead>
-             <tr>
-               <th>Title</th>
-               <th>Status</th>
-               <th>Action</th>
-             </tr>
-           </thead>
-           <tbody> 
-            {catdata.map((el)=>(
-                <tr key={el.id}>
-                <td>{el.title}</td>
-                <td>
-                 <span class="badge bg-primary">{el.status}</span>
-                </td>
-                <td className='d-flex justify-content-center'>
-                    <button className='btn btn-danger mx-1 px-lg-5 px-sm-4 px-3 py-2'><i class="far fa-trash-alt"></i></button>
-                    <button className='btn btn-info mx-1 px-lg-5 px-sm-4 px-3 py-2'><i class="far fa-edit"></i></button>
-                </td>
-                </tr>                            
-            ))}
-           </tbody>
-         </table>            
+        <div className="col-12 blockborder p-2">   
+        <table className="table align-middle mb-0 bg-white" style={{borderRadius:'10px'}}>
+  <thead className="bg-light">
+    <tr>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p className="fw-normal mb-1">Designer</p>
+        <p className="text-muted mb-0">UI/UX</p>
+      </td>
+      <td>
+        <span className="badge badge-warning rounded-pill d-inline">Awaiting</span>
+      </td>
+      <td>
+     <div className='d-flex'>
+      <button type="button" class="btn btn-link btn-sm btn-rounded">
+        <i class="far fa-trash-alt"></i>
+      </button>
+      <button type="button" class="btn btn-link btn-sm btn-rounded">
+        <i class="far fa-edit"></i>
+      </button>
+      </div>
+     </td>
+   
+    </tr>
+  </tbody>
+</table>           
          </div>
         </div>
         </main>
