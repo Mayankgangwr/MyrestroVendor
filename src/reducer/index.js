@@ -1,9 +1,11 @@
-import formData from './formdata';
-import OrderData from './orderdata';
-import {combineReducers } from "redux";
+import formData from "./formdata";
+import OrderData from "./orderdata";
+import CategoryData from "./categorydata";
+import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    formData,
-    OrderData
+  formData,
+  OrderData,
+  CategoryData,
 });
 export default rootReducer;
