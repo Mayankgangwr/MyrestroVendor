@@ -73,15 +73,21 @@ const Category = () => {
                       <div className="d-flex">
                         <button
                           type="button"
-                          class="btn btn-link btn-sm btn-rounded"
+                          class="btn btn-danger btn-sm btn-rounded"
                         >
                           <i class="far fa-trash-alt"></i>
                         </button>
                         <button
                           type="button"
-                          class="btn btn-link btn-sm btn-rounded"
+                          class="btn btn-primary btn-sm btn-rounded mx-1"
                         >
                           <i class="far fa-edit"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-info btn-sm btn-rounded"
+                        >
+                          <i class="fas fa-plus"></i>
                         </button>
                       </div>
                     </td>
