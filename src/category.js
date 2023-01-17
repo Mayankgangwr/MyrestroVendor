@@ -9,6 +9,7 @@ const Category = () => {
   useEffect(() => {
     getCat();
   }, []);
+
   function getCat() {
     const data = {
       restroid: localStorage.getItem("restroid"),
