@@ -10,6 +10,12 @@ export const ReadOrder = (data) => {
     payload: data,
   };
 };
+export const ReadProduct = (data) => {
+  return {
+    type: "ReadProduct",
+    payload: data,
+  };
+};
 export const ReadCategory = (data) => {
   return {
     type: "ReadCategory",

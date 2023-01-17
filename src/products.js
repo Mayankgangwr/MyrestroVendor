@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { ReadOrder } from "./action/index";
+import { ReadProduct } from "./action/index";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
 import { useSelector, useDispatch } from "react-redux";
 const Products = () => {
-  const orderdata = useSelector((state) => state.OrderData);
+  const navigate = useNavigate();
+  const prodata = useSelector((state) => state.ProductData);
   const dispatch = useDispatch();
   const [category, setCategory] = useState([]);
   const [filter, setFilter] = useState({
@@ -28,7 +30,10 @@ const Products = () => {
       .post("https://sattasafari.com/restro/product/read.php", data)
       .then(function (response) {
         console.log(response.data);
-        dispatch(ReadOrder(response.data));
+        if (response.data.message == "No record found.") {
+        } else {
+          dispatch(ReadProduct(response.data));
+        }
       });
   }
   function getCat() {
@@ -41,7 +46,7 @@ const Products = () => {
         setCategory(response.data);
       });
   }
-  const searchdata = orderdata.filter((item) => {
+  const searchdata = prodata.filter((item) => {
     if (filter.proname !== "") {
       const Title = item.title.toUpperCase();
       const pro_name = filter.proname.toUpperCase();
@@ -165,6 +170,19 @@ const Products = () => {
                   </div>
                 </div>
               ))}
+            {prodata.length == 0 && (
+              <h4 className="text-center mt-2">
+                There is no Product. <br />
+                <button
+                  onClick={() => navigate("/addpro")}
+                  type="button"
+                  className="btn btn-info btn-rounded mt-2"
+                  style={{ width: "200px" }}
+                >
+                  Add New Product
+                </button>
+              </h4>
+            )}
           </div>
         </div>
       </main>

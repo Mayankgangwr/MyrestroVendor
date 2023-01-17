@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ReadCategory } from "./action/index";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
 import { useSelector, useDispatch } from "react-redux";
 const Category = () => {
   const categorydata = useSelector((state) => state.CategoryData);
+  const navigate = useNavigate();
   let nocat;
   if (categorydata.length > 0) {
     nocat = categorydata.length;
@@ -61,7 +63,11 @@ const Category = () => {
               <p className="fw-normal mb-1">{`Total Category ${nocat}`}</p>
             </div>
             <div className="col-6 text-end">
-              <button type="button" className="btn btn-info btn-sm btn-rounded">
+              <button
+                type="button"
+                onClick={() => navigate("/addcat")}
+                className="btn btn-info btn-sm btn-rounded"
+              >
                 <i className="fas fa-plus"></i>
               </button>
             </div>
@@ -124,6 +130,7 @@ const Category = () => {
                 There is no category. <br />
                 <button
                   type="button"
+                  onClick={() => navigate("/addcat")}
                   className="btn btn-info btn-rounded mt-2"
                   style={{ width: "200px" }}
                 >
