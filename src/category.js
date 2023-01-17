@@ -5,6 +5,12 @@ import "./product.css";
 import { useSelector, useDispatch } from "react-redux";
 const Category = () => {
   const categorydata = useSelector((state) => state.CategoryData);
+  let nocat;
+  if (categorydata.length > 0) {
+    nocat = categorydata.length;
+  } else {
+    nocat = 0;
+  }
   const dispatch = useDispatch();
   useEffect(() => {
     getCat();
@@ -19,6 +25,20 @@ const Category = () => {
       .then(function (response) {
         dispatch(ReadCategory(response.data));
       });
+  }
+  function deleteCat(dataid) {
+    let text = "Are You Sure To Delete This Category.";
+    if (confirm(text) == true) {
+      const data = {
+        restroid: localStorage.getItem("restroid"),
+        dataid: dataid,
+      };
+      axios
+        .post("https://sattasafari.com/restro/category/delete.php", data)
+        .then(function (response) {
+          getCat();
+        });
+    }
   }
   return (
     <>
@@ -38,11 +58,11 @@ const Category = () => {
           </nav>
           <div className="blockborder row py-2">
             <div className="col-6">
-              <p className="fw-normal mb-1">{`Total Category ${categorydata.length}`}</p>
+              <p className="fw-normal mb-1">{`Total Category ${nocat}`}</p>
             </div>
             <div className="col-6 text-end">
-              <button type="button" class="btn btn-info btn-sm btn-rounded">
-                <i class="fas fa-plus"></i>
+              <button type="button" className="btn btn-info btn-sm btn-rounded">
+                <i className="fas fa-plus"></i>
               </button>
             </div>
           </div>
@@ -59,42 +79,58 @@ const Category = () => {
                 </tr>
               </thead>
               <tbody>
-                {categorydata.map(({ id, title, status }) => (
-                  <tr key={id}>
-                    <td>
-                      <p className="fw-normal mb-1">{title}</p>
-                    </td>
-                    <td>
-                      <span className="badge badge-warning rounded-pill d-inline">
-                        {status}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="d-flex">
-                        <button
-                          type="button"
-                          class="btn btn-danger btn-sm btn-rounded"
-                        >
-                          <i class="far fa-trash-alt"></i>
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary btn-sm btn-rounded mx-1"
-                        >
-                          <i class="far fa-edit"></i>
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-info btn-sm btn-rounded"
-                        >
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {categorydata.length > 0 &&
+                  categorydata.map(({ id, title, status }) => (
+                    <tr key={id}>
+                      <td>
+                        <p className="fw-normal mb-1">{title}</p>
+                      </td>
+                      <td>
+                        <span className="badge badge-warning rounded-pill d-inline">
+                          {status}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="d-flex">
+                          <button
+                            type="submit"
+                            onClick={() => {
+                              deleteCat(id);
+                            }}
+                            className="btn btn-danger btn-sm btn-rounded"
+                          >
+                            <i className="far fa-trash-alt"></i>
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-primary btn-sm btn-rounded mx-1"
+                          >
+                            <i className="far fa-edit"></i>
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-info btn-sm btn-rounded"
+                          >
+                            <i className="fas fa-plus"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
+            {nocat == 0 && (
+              <h4 className="text-center mt-2">
+                There is no category. <br />
+                <button
+                  type="button"
+                  className="btn btn-info btn-rounded mt-2"
+                  style={{ width: "200px" }}
+                >
+                  Add New Category
+                </button>
+              </h4>
+            )}
           </div>
         </div>
       </main>
