@@ -1,0 +1,22 @@
+.item-logo {
+    width: 70px !important;
+    height: 70px !important;
+}
+.price {
+    font-size: 16px;
+    font-weight: 500;
+}
+.mrp {
+    color: #535665;
+    text-decoration: line-through;
+}
+.pro-icon{
+    display: none;
+}
+.card:hover .pro-icon{
+    display: block;
+}
+.card-item{
+    box-shadow: 1px 0px 4px #797a7c;
+    border-radius: 10px;
+}
