@@ -45,7 +45,7 @@ const Category = () => {
   return (
     <>
       <main style={{ marginTop: "58px" }}>
-        <div className="container-fluid pt-4">
+        <div className="container-fluid pt-4  mb-4">
           <nav aria-label="breadcrumb" className="pathhistory">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
@@ -115,6 +115,7 @@ const Category = () => {
                           </button>
                           <button
                             type="button"
+                            onClick={() => navigate("/addpro")}
                             className="btn btn-info btn-sm btn-rounded"
                           >
                             <i className="fas fa-plus"></i>
