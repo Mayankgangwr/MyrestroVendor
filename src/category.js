@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ReadCategory } from "./action/index";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ const Category = () => {
   } else {
     nocat = 0;
   }
+  console.log(categorydata);
   const dispatch = useDispatch();
   useEffect(() => {
     getCat();
@@ -107,12 +108,12 @@ const Category = () => {
                           >
                             <i className="far fa-trash-alt"></i>
                           </button>
-                          <button
-                            type="button"
+                          <Link
+                            to={`/editcat/${id}`}
                             className="btn btn-primary btn-sm btn-rounded mx-1"
                           >
                             <i className="far fa-edit"></i>
-                          </button>
+                          </Link>
                           <button
                             type="button"
                             onClick={() => navigate("/addpro")}

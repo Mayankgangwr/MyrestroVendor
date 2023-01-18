@@ -9,6 +9,7 @@ import Products from "./products";
 import Loginform from "./login";
 import AddCat from "./addcategory";
 import AddPro from "./addproduct";
+import UpdateCat from "./updatecat";
 import axios from "axios";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="categories" element={<Category />} />
             <Route path="products" element={<Products />} />
             <Route path="addcat" element={<AddCat />} />
+            <Route path="editcat/:id" element={<UpdateCat />} />
             <Route path="addpro" element={<AddPro />} />
           </Route>
         </Routes>
