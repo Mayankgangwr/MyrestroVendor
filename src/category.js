@@ -116,7 +116,7 @@ const Category = () => {
                           </Link>
                           <button
                             type="button"
-                            onClick={() => navigate("/addpro")}
+                            onClick={() => navigate(`/addpro/${id}`)}
                             className="btn btn-info btn-sm btn-rounded"
                           >
                             <i className="fas fa-plus"></i>

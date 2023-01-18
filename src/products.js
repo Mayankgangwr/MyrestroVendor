@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ReadProduct } from "./action/index";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Outlet, NavLink, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -159,10 +159,9 @@ const Products = () => {
                               </span>
                               <span className="price mrp">${el.mrp}</span>
                             </div>
-                            <i
-                              class="fas fa-edit pro-icon mt-1 me-1"
-                              style={{ cursor: "pointer" }}
-                            ></i>
+                            <Link to={`/editpro/${el.id}`}>
+                              <i className="fas fa-edit pro-icon mt-1 me-1"></i>
+                            </Link>
                           </div>
                         </div>
                       </div>

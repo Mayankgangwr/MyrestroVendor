@@ -37,27 +37,46 @@ const Orders = () => {
             {orderdata.map((el) => (
               <div
                 key={el.id}
-                className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
+                className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
               >
                 <div className="card  card-item ">
-                  <div className="card-body p-2">
-                    <div className="d-flex text-black p-0">
-                      <img
-                        src="https://pngimg.com/uploads/pizza/pizza_PNG43981.png"
-                        alt="Generic placeholder image"
-                        className="item-logo"
-                      />
-                      <div className="row ps-3">
-                        <div className="col-12">
-                          <h6 className="text-start">Veg Pizza</h6>
-                        </div>
-                        <div className="col-12">
-                          <span className="price sale-price pe-2">$125</span>
-                          <span className="price mrp">$150</span>
-                        </div>
-                      </div>
+                  <div class="card-header ms-1 pb-0">
+                    <div className="d-flex justify-content-between">
+                      <h5 class="card-title text-primary">{el.client_name}</h5>
+                      <h6 class="card-title text-danger">{el.status}</h6>
                     </div>
                   </div>
+                  <div className="card-body p-2 mb-2">
+                    <table>
+                      <thead>
+                        <tr>
+                          <td className="px-3">
+                            <b>Name</b>
+                          </td>
+                          <td className="px-3">
+                            <b>Qty</b>
+                          </td>
+                          <td className="px-3">
+                            <b>Price</b>
+                          </td>
+                          <td className="px-3">
+                            <b>Total</b>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {JSON.parse(el.products).map((item) => (
+                          <tr>
+                            <td className="px-3">{item.title}</td>
+                            <td className="px-3">{item.qty}</td>
+                            <td className="px-3">{item.price}</td>
+                            <td className="px-3">{item.qty * item.price}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer text-muted">2 days ago</div>
                 </div>
               </div>
             ))}

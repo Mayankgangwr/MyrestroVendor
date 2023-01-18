@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { ReadCategory } from "./action/index";
+import { ReadProduct, ReadCategory } from "./action/index";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import axios from "axios";
-const AddPro = () => {
+const EditPro = () => {
   const catdata = useSelector((state) => state.CategoryData);
-  const { catid } = useParams();
-  console.log(catid);
+  const proupdata = useSelector((state) => state.ProductData);
+  const { proid } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     getCat();
   }, []);
+
   function getCat() {
     const data = {
       restroid: localStorage.getItem("restroid"),
@@ -22,16 +24,17 @@ const AddPro = () => {
         dispatch(ReadCategory(response.data));
       });
   }
-  const catobj = catdata.filter((item) => {
-    return item.id == catid;
+  const catobj = proupdata.filter((item) => {
+    return item.id == proid;
   });
   const [prodata, setProdata] = useState({
     restroid: localStorage.getItem("restroid"),
-    proname: "",
-    procatid: catid,
-    proimg: "",
-    promrp: "",
-    proprice: "",
+    proid: catobj[0].id,
+    proname: catobj[0].title,
+    procatid: proid,
+    proimg: catobj[0].img,
+    promrp: catobj[0].mrp,
+    proprice: catobj[0].price,
     prostatus: "Active",
   });
   const handleChange = (e) => {
@@ -39,23 +42,15 @@ const AddPro = () => {
     const value = e.target.value;
     setProdata({ ...prodata, [name]: value });
   };
-  const AddPro = (e) => {
+  const EditPro = (e) => {
     e.preventDefault();
     if (prodata.proname !== "") {
       axios
-        .post("https://sattasafari.com/restro/product/create.php", prodata)
+        .post("https://sattasafari.com/restro/product/update.php", prodata)
         .then(function (response) {
           alert(response.data.message);
-          if ((response.data.message = "Data Added")) {
-            setProdata({
-              restroid: localStorage.getItem("restroid"),
-              proname: "",
-              procatid: catid,
-              proimg: "",
-              promrp: "",
-              proprice: "",
-              prostatus: "Active",
-            });
+          if ((response.data.message = "Data Updated")) {
+            navigate("/products");
           }
         });
     } else {
@@ -74,20 +69,23 @@ const AddPro = () => {
                 </a>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Add Product
+                Edit Product
               </li>
             </ol>
           </nav>
-          <form className="blockborder" onSubmit={AddPro}>
+          <form className="blockborder" onSubmit={EditPro}>
             <div className="row mx-2 d-flex justify-content-center pt-4">
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-8 col-12">
                 <div className="form-outline my-2">
                   <select className="form-control border">
                     {catdata.map(({ id, title }) => {
-                      if (id == catid) {
+                      if (id == proid) {
                         return <option value={id}>{title}</option>;
                       }
                     })}
+                    {catdata.map(({ id, title }) => (
+                      <option value={id}>{title}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -101,9 +99,6 @@ const AddPro = () => {
                     className="form-control border"
                     required
                   />
-                  <label className="form-label" for="proname">
-                    Product Name
-                  </label>
                 </div>
               </div>
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-8 col-12">
@@ -116,9 +111,6 @@ const AddPro = () => {
                     className="form-control border"
                     required
                   />
-                  <label className="form-label" for="promrp">
-                    Product MRP
-                  </label>
                 </div>
               </div>
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-8 col-12">
@@ -131,9 +123,6 @@ const AddPro = () => {
                     className="form-control border"
                     required
                   />
-                  <label className="form-label" for="proprice">
-                    Product Price
-                  </label>
                 </div>
               </div>
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-8 col-12">
@@ -146,9 +135,6 @@ const AddPro = () => {
                     className="form-control border"
                     required
                   />
-                  <label className="form-label" for="proimg">
-                    Paste product pic link
-                  </label>
                 </div>
               </div>
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-8 col-12">
@@ -165,7 +151,7 @@ const AddPro = () => {
               </div>
               <div className="col-12 my-4">
                 <button type="submit" className="btn btn-primary btn-block">
-                  Add Product
+                  Edit Product
                 </button>
               </div>
             </div>
@@ -175,4 +161,4 @@ const AddPro = () => {
     </>
   );
 };
-export default AddPro;
+export default EditPro;
