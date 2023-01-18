@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
+
 const UpdateCat = () => {
   const updatacatedata = useSelector((state) => state.CategoryData);
   const navigate = useNavigate();
