@@ -25,7 +25,7 @@ function App() {
             <Route path="products" element={<Products />} />
             <Route path="addcat" element={<AddCat />} />
             <Route path="editcat/:id" element={<UpdateCat />} />
-            <Route path="addpro" element={<AddPro />} />
+            <Route path="addpro/:proid" element={<AddPro />} />
           </Route>
         </Routes>
       </BrowserRouter>
