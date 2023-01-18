@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ReadOrder } from "./action/index";
 import axios from "axios";
 import "./order.css";
@@ -7,28 +7,49 @@ const Orders = () => {
   const orderdata = useSelector((state) => state.OrderData);
   const dispatch = useDispatch();
   useEffect(() => {
+    getOrd();
+  }, []);
+  function getOrd() {
     const data = {
       restroid: localStorage.getItem("restroid"),
     };
     axios
       .post("https://sattasafari.com/restro/order/read.php", data)
       .then(function (response) {
-        console.log(response.data);
         dispatch(ReadOrder(response.data));
       });
-  }, []);
+  }
+  const [proupdata, setProupdata] = useState("mmm");
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setProupdata(value);
+  };
+  const updateord = (id) => {
+    const productdata = {
+      productid: id,
+      productstatus: proupdata,
+    };
+    if (productdata.productstatus !== "") {
+      axios
+        .post("https://sattasafari.com/restro/order/update.php", productdata)
+        .then(function (response) {
+          alert(response.data.message);
+          getOrd();
+        });
+    }
+  };
   return (
     <>
       <main style={{ marginTop: "58px" }}>
         <div className="container-fluid pt-4">
           <nav aria-label="breadcrumb" className="pathhistory">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
                 <a href="#" className="nav-link">
-                  <i class="fas fa-globe small me-2"></i> Dashboard
+                  <i className="fas fa-globe small me-2"></i> Dashboard
                 </a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item active" aria-current="page">
                 Orders
               </li>
             </ol>
@@ -40,10 +61,12 @@ const Orders = () => {
                 className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
               >
                 <div className="card  card-item ">
-                  <div class="card-header ms-1 pb-0">
+                  <div className="card-header ms-1 pb-0">
                     <div className="d-flex justify-content-between">
-                      <h5 class="card-title text-primary">{el.client_name}</h5>
-                      <h6 class="card-title text-danger">{el.status}</h6>
+                      <h5 className="card-title text-primary">
+                        {el.client_name}
+                      </h5>
+                      <h6 className="card-title text-danger">{el.status}</h6>
                     </div>
                   </div>
                   <div className="card-body p-2 mb-2">
@@ -66,17 +89,73 @@ const Orders = () => {
                       </thead>
                       <tbody>
                         {JSON.parse(el.products).map((item) => (
-                          <tr>
+                          <tr key={item.id}>
                             <td className="px-3">{item.title}</td>
                             <td className="px-3">{item.qty}</td>
                             <td className="px-3">{item.price}</td>
                             <td className="px-3">{item.qty * item.price}</td>
                           </tr>
                         ))}
+                        <hr />
+                        <tr className="my-2">
+                          <td className="px-3">
+                            <b>Qty</b>
+                          </td>
+                          <td className="px-3">
+                            <b>
+                              {JSON.parse(el.products).reduce((total, item) => {
+                                return total + item.qty;
+                              }, 0)}
+                            </b>
+                          </td>
+                          <td className="px-3">
+                            <b>Amount</b>
+                          </td>
+                          <td className="px-3">
+                            <b>
+                              {JSON.parse(el.products).reduce((total, item) => {
+                                return total + item.qty * item.price;
+                              }, 0)}
+                            </b>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
-                  <div class="card-footer text-muted">2 days ago</div>
+                  <div className="card-footer">
+                    <div className="row">
+                      <div className="col-8">
+                        <select
+                          onChange={handleChange}
+                          className="form-control"
+                        >
+                          <option value={el.status}>{el.status}</option>
+                          <option value="Accepted">Accepted</option>
+                          <option value="Out of Stock">Out of Stock</option>
+                          <option value="Cancel">Cancel</option>
+                          <option value="Preparing">Preparing</option>
+                          <option value="Ready To Serve">Ready To Serve</option>
+                        </select>
+                      </div>
+                      <div className="col-2 mt-1">
+                        <button
+                          type="button"
+                          onClick={() => updateord(el.id)}
+                          className="btn btn-info btn-sm btn-rounded"
+                        >
+                          <i className="fas fa-edit"></i>
+                        </button>
+                      </div>
+                      <div className="col-2 mt-1">
+                        <button
+                          type="button"
+                          className="btn btn-primary btn-sm btn-rounded"
+                        >
+                          <i className="fas fa-file-invoice"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
