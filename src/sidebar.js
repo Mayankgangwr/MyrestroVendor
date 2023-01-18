@@ -11,6 +11,11 @@ function Sidebar() {
       navigate("/");
     }
   });
+  const LogOut = () => {
+    localStorage.removeItem("restrotitle");
+    localStorage.removeItem("restroid");
+    navigate("/");
+  };
   return (
     <>
       <header>
@@ -177,7 +182,7 @@ function Sidebar() {
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a onClick={LogOut} className="dropdown-item" href="#">
                       Logout
                     </a>
                   </li>
