@@ -136,8 +136,8 @@ const Home = () => {
           <nav aria-label="breadcrumb" className="pathhistory mt-3">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="#" className="nav-link">
-                  Products
+                <a href="#" className="fs-5 nav-link">
+                  <b>Products</b>
                 </a>
               </li>
             </ol>
