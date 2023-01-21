@@ -76,7 +76,7 @@ function Sidebar() {
               </NavLink>
               <NavLink
                 activeClassName="active"
-                to="/products"
+                to="#"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -88,7 +88,7 @@ function Sidebar() {
               </NavLink>
               <NavLink
                 activeClassName="active"
-                to="/products"
+                to="#"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
