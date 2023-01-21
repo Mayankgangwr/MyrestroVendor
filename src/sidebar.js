@@ -74,6 +74,30 @@ function Sidebar() {
                 />
                 <span>Products</span>
               </NavLink>
+              <NavLink
+                activeClassName="active"
+                to="/products"
+                className="list-group-item list-group-item-action side-item-p ripple"
+              >
+                <img
+                  src="https://s3uk4s-3000.preview.csb.app/images/user.png"
+                  width="17"
+                  className="sidebar-icon"
+                />
+                <span>Profile</span>
+              </NavLink>
+              <NavLink
+                activeClassName="active"
+                to="/products"
+                className="list-group-item list-group-item-action side-item-p ripple"
+              >
+                <img
+                  src="https://s3uk4s-3000.preview.csb.app/images/settings.png"
+                  width="17"
+                  className="sidebar-icon"
+                />
+                <span>Settings</span>
+              </NavLink>
             </div>
           </div>
         </nav>
@@ -102,18 +126,7 @@ function Sidebar() {
                 loading="lazy"
               />
             </a>
-            <form className="d-none d-md-flex input-group w-auto my-auto">
-              <input
-                autocomplete="off"
-                type="search"
-                className="form-control rounded"
-                placeholder='Search (ctrl + "/" to focus)'
-                style={{ minWidth: "225px" }}
-              />
-              <span className="input-group-text border-0">
-                <i className="fas fa-search"></i>
-              </span>
-            </form>
+          
             <ul className="navbar-nav ms-auto d-flex flex-row">
               <li className="nav-item dropdown">
                 <a

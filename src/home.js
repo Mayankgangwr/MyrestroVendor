@@ -1,15 +1,212 @@
-import React, {useState, useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { ReadProduct } from "./action/index";
+import { useSelector, useDispatch } from "react-redux";
+import { Outlet, NavLink, Link, useNavigate } from "react-router-dom";
+import "./home.css";
+import axios from "axios";
 const Home = () => {
-    return (
-        <>
-        <main style={{marginTop: '58px'}}>
-        <div className="container pt-4">
-        <h1>Wellcome <span style={{color:'red'}}>{localStorage.getItem('restrotitle')}</span></h1>    
-        </div>
-        </main>
-        </>
-    );
-  };""
+  const prodata = useSelector((state) => state.ProductData);
+  const dispatch = useDispatch();
+  const [orders, setOrders] = useState([]); 
+  useEffect(() => {
+    getPro();
+    getOrd();
+  }, []);
+
+  function getPro() {
+    const data = {
+      restroid: localStorage.getItem("restroid"),
+    };
+    axios
+      .post("https://sattasafari.com/restro/product/read.php", data)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.message == "No record found.") {
+        } else {
+          dispatch(ReadProduct(response.data));
+        }
+      });
+  }
+  function deletePro(dataid) {
+    let text = "Are You Sure To Delete This Category.";
+    if (confirm(text) == true) {
+      const data = {
+        dataid: dataid,
+      };
+      axios
+        .post("https://sattasafari.com/restro/product/delete.php", data)
+        .then(function (response) {
+          getPro();
+        });
+    }
+  }
+  function getOrd() {
+    const data = {
+      restroid: localStorage.getItem("restroid"),
+    };
+    axios
+      .post("https://sattasafari.com/restro/order/read.php", data)
+      .then(function (response) {
+        setOrders(response.data);
+      });
+  }
+
+  const current = new Date();
+  const cdate = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
+  const ldate = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()-1}`;
   
-  export default Home;
+  let today = 0; 
+  orders.map((item)=>{
+    if(item.date==cdate){
+      today++;
+    }     
+  });
+  let yesterday = 0; 
+  orders.map((item)=>{
+    if(item.date==ldate){
+      yesterday++;
+    }     
+  });
+  return (
+    <>
+      <main style={{ marginTop: "58px" }}>
+        <div className="container pt-4">
+          {/*<h1>
+            Wellcome{" "}
+            <span style={{ color: "red" }}>
+              {localStorage.getItem("restrotitle")}
+            </span>
+  </h1>*/}
+          <div className="row">
+            <div className="col-md-4 col-12 mt-2">
+              <div
+                className="card bg-gradient-danger card-img-holder text-white"
+              >
+                <div className="card-body">
+                  <img
+                    src="./images/circle.svg"
+                    class="card-img-absolute"
+                    alt="circle-image"
+                  />
+                  <h4 className="font-weight-normal mb-3">
+                     Today's Order{" "}
+                    <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                  </h4>
+                  <h2 className="mb-5">{today}</h2>
+                  </div>
+              </div>
+            </div>
+            <div className="col-md-4 col-12 mt-2">
+              <div
+                className="card bg-gradient-info card-img-holder text-white"
+              >
+                <div className="card-body">
+                  <img
+                    src="./images/circle.svg"
+                    class="card-img-absolute"
+                    alt="circle-image"
+                  />
+                  <h4 className="font-weight-normal mb-3">
+                  Yesterday's Order{" "}
+                    <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                  </h4>
+                  <h2 className="mb-5">{yesterday}</h2>
+                  </div>
+              </div>
+            </div>
+            <div className="col-md-4 col-12 mt-2">
+              <div
+                className="card bg-gradient-success card-img-holder text-white"
+              >
+                <div className="card-body">
+                  <img
+                    src="./images/circle.svg"
+                    class="card-img-absolute"
+                    alt="circle-image"
+                  />
+                  <h4 className="font-weight-normal mb-3">
+                  Total Order{" "}
+                    <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                  </h4>
+                  <h2 className="mb-5">{orders.length}</h2>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <nav aria-label="breadcrumb" className="pathhistory mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#" className="nav-link">
+                  Products
+                </a>
+              </li>
+            </ol>
+          </nav>
+          <div className="blockborder row">
+            {prodata.length > 0 &&
+              prodata.map((el) => (
+                <div
+                  key={el.id}
+                  className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
+                >
+                  <div className="card card-item ">
+                    <div className="card-body p-2">
+                      <div className="d-flex text-black p-0">
+                        <img
+                          src={el.img}
+                          alt="Generic placeholder image"
+                          className="item-logo"
+                        />
+                        <div className="row ps-3">
+                          <div className="col-12 d-flex justify-content-between">
+                            <div>
+                              <h6 className="text-start mb-0">{el.title}</h6>
+                              <span>{el.cat_name}</span>
+                            </div>
+                            <i
+                              onClick={() => {
+                                deletePro(el.id);
+                              }}
+                              class="fas fa-trash pro-icon mt-1 me-1"
+                              style={{ cursor: "pointer" }}
+                            ></i>
+                          </div>
+                          <div className="col-12 d-flex justify-content-between">
+                            <div>
+                              <span className="price sale-price pe-2">
+                                ${el.price}
+                              </span>
+                              <span className="price mrp">${el.mrp}</span>
+                            </div>
+                            <Link to={`/editpro/${el.id}`}>
+                              <i className="fas fa-edit pro-icon mt-1 me-1"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            {prodata.length == 0 && (
+              <h4 className="text-center mt-2">
+                There is no Product. <br />
+                <button
+                  onClick={() => navigate("/addpro")}
+                  type="button"
+                  className="btn btn-info btn-rounded mt-2"
+                  style={{ width: "200px" }}
+                >
+                  Add New Product
+                </button>
+              </h4>
+            )}
+          </div>
+        </div>
+      </main>
+    </>
+  );
+};
+("");
+
+export default Home;
