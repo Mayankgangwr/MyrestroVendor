@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
 import { useSelector, useDispatch } from "react-redux";
+import CountUp from 'react-countup';
 const Category = () => {
   const categorydata = useSelector((state) => state.CategoryData);
   const navigate = useNavigate();

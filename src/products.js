@@ -120,6 +120,7 @@ const Products = () => {
                 style={{ borderRadius: "10px" }}
                 name="proname"
                 placeholder="Search by name"
+                autoComplete="off"
               />
             </div>
           </div>
@@ -173,13 +174,18 @@ const Products = () => {
               <h4 className="text-center mt-2">
                 There is no Product. <br />
                 <button
-                  onClick={() => navigate("/addpro")}
+                  onClick={() => navigate("/categories")}
                   type="button"
                   className="btn btn-info btn-rounded mt-2"
                   style={{ width: "200px" }}
                 >
                   Add New Product
                 </button>
+              </h4>
+            )}
+            {prodata.length != 0 && sdata.length == 0 && (
+              <h4 className="text-center mt-2">
+                There is no Product. <br />
               </h4>
             )}
           </div>

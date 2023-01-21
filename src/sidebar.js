@@ -24,19 +24,19 @@ function Sidebar() {
           className="collapse d-lg-block sidebar collapse bg-white"
         >
           <div className="position-sticky">
-            <div className="list-group list-group-flush mt-4">
+            <div className="list-group list-group-flush mt-1">
               <NavLink
                 exact
-                activeClassName="active"
+                activeClassName="active py-2"
                 to="/dashboard"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
                   src="https://s3uk4s-3000.preview.csb.app/images/dashboard.png"
-                  width="17"
+                  width="18"
                   className="sidebar-icon"
                 />
-                <span>Dashboard</span>
+                <span className="font-size">Dashboard</span>
               </NavLink>
               <NavLink
                 activeClassName="active"
@@ -45,10 +45,10 @@ function Sidebar() {
               >
                 <img
                   src="https://s3uk4s-3000.preview.csb.app/images/order.png"
-                  width="17"
+                  width="18"
                   className="sidebar-icon"
                 />
-                <span>Orders</span>
+                <span className="font-size">Orders</span>
               </NavLink>
               <NavLink
                 activeClassName="active"
@@ -57,10 +57,10 @@ function Sidebar() {
               >
                 <img
                   src="https://s3uk4s-3000.preview.csb.app/images/category.png"
-                  width="17"
+                  width="18"
                   className="sidebar-icon"
                 />
-                <span>Categories</span>
+                <span className="font-size">Categories</span>
               </NavLink>
               <NavLink
                 activeClassName="active"
@@ -69,34 +69,34 @@ function Sidebar() {
               >
                 <img
                   src="https://s3uk4s-3000.preview.csb.app/images/product.png"
-                  width="17"
+                  width="18"
                   className="sidebar-icon"
                 />
-                <span>Products</span>
+                <span className="font-size">Products</span>
               </NavLink>
               <NavLink
                 activeClassName="active"
-                to="#"
+                to="/profile"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
                   src="https://s3uk4s-3000.preview.csb.app/images/user.png"
-                  width="17"
+                  width="18"
                   className="sidebar-icon"
                 />
-                <span>Profile</span>
+                <span className="font-size">Profile</span>
               </NavLink>
               <NavLink
                 activeClassName="active"
-                to="#"
+                to="/settings"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
                   src="https://s3uk4s-3000.preview.csb.app/images/settings.png"
-                  width="17"
+                  width="18"
                   className="sidebar-icon"
                 />
-                <span>Settings</span>
+                <span className="font-size">Settings</span>
               </NavLink>
             </div>
           </div>
@@ -126,7 +126,7 @@ function Sidebar() {
                 loading="lazy"
               />
             </a>
-          
+
             <ul className="navbar-nav ms-auto d-flex flex-row">
               <li className="nav-item dropdown">
                 <a
