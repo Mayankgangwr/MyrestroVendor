@@ -30,7 +30,7 @@ const Pending = () => {
   }
   useEffect(() => {
     getOrd();
-  }, []);
+  });
   function getOrd() {
     const data = {
       restroid: localStorage.getItem("restroid"),
@@ -80,7 +80,7 @@ const Pending = () => {
   }-${current.getDate()}`;
 
   const pendingord = orderdata.filter((item) => {
-    return item.date == cdate && item.status == param.status;
+    return item.status == param.status;
   });
   return (
     <>
@@ -109,11 +109,14 @@ const Pending = () => {
               >
                 <div className="card  card-item ">
                   <div className="card-header ms-1 pb-0">
-                    <div className="d-flex justify-content-between">
-                      <h5 className="card-title text-primary">
-                        {el.client_name}
-                      </h5>
-                      <h6 className="card-title text-capitalized text-danger">
+                    <h5 className="card-title text-center text-warning">
+                      {el.client_name}
+                    </h5>
+                    <div className="d-flex justify-content-between mt-2">
+                      <h6 className="card-title text-primary mt-2">
+                        {el.date}
+                      </h6>
+                      <h6 className="card-title text-capitalized  mt-2 text-danger">
                         {el.status == "ontable" ? "On Table" : el.status}
                       </h6>
                     </div>
