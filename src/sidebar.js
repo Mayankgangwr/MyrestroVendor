@@ -148,30 +148,6 @@ function Sidebar() {
                 />
                 <span className="font-size">Products</span>
               </NavLink>
-              <NavLink
-                activeClassName="active"
-                to="/profile"
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/user.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">Profile</span>
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                to="/settings"
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/settings.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">Settings</span>
-              </NavLink>
             </div>
           </div>
         </nav>

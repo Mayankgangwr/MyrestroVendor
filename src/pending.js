@@ -12,6 +12,7 @@ const Pending = () => {
   const navigate = useNavigate();
   if (
     param.status != "preparing" &&
+    param.status != "complete" &&
     param.status != "ontable" &&
     param.status != "pending" &&
     param.status != "accepted" &&
@@ -92,8 +93,11 @@ const Pending = () => {
                   <i className="fas fa-globe small me-2"></i> Dashboard
                 </a>
               </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                Orders
+              <li
+                className="breadcrumb-item text-capitalized active"
+                aria-current="page"
+              >
+                {`${param.status} Orders`}
               </li>
             </ol>
           </nav>
