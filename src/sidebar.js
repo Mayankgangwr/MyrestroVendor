@@ -38,9 +38,9 @@ function Sidebar() {
                 />
                 <span className="font-size">Dashboard</span>
               </NavLink>
-              <NavLink
+              <a
                 activeClassName="active"
-                to="/order/pending"
+                href="/order/pending"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -49,7 +49,7 @@ function Sidebar() {
                   className="sidebar-icon"
                 />
                 <span className="font-size">Pending Order</span>
-              </NavLink>
+              </a>
               <NavLink
                 activeClassName="active"
                 to="/order/accepted"
