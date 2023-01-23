@@ -49,7 +49,7 @@ function Sidebar() {
                   className="sidebar-icon"
                 />
                 <span className="font-size">Pending Order</span>
-              </a>
+              </NavLink>
               <NavLink
                 activeClassName="active"
                 to="/order/accepted"

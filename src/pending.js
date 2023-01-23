@@ -30,7 +30,7 @@ const Pending = () => {
   }
   useEffect(() => {
     getOrd();
-  });
+  }, []);
   function getOrd() {
     const data = {
       restroid: localStorage.getItem("restroid"),
