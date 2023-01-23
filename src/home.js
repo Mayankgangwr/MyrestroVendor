@@ -86,58 +86,64 @@ const Home = () => {
   </h1>*/}
           <div className="row">
             <div className="col-md-4 col-12 mt-2">
-              <div className="card bg-gradient-danger card-img-holder text-white">
-                <div className="card-body">
-                  <img
-                    src="./images/circle.svg"
-                    class="card-img-absolute"
-                    alt="circle-image"
-                  />
-                  <h4 className="font-weight-normal mb-3">
-                    Today's Order{" "}
-                    <i className="mdi mdi-chart-line mdi-24px float-right"></i>
-                  </h4>
-                  <h2 className="mb-5">
-                    <CountUp end={today} duration={1} />
-                  </h2>
+              <Link to="/order">
+                <div className="card bg-gradient-danger card-img-holder text-white">
+                  <div className="card-body">
+                    <img
+                      src="./images/circle.svg"
+                      class="card-img-absolute"
+                      alt="circle-image"
+                    />
+                    <h4 className="font-weight-normal mb-3">
+                      Today's Order{" "}
+                      <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                    </h4>
+                    <h2 className="mb-5">
+                      <CountUp end={today} duration={1} />
+                    </h2>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="col-md-4 col-12 mt-2">
-              <div className="card bg-gradient-info card-img-holder text-white">
-                <div className="card-body">
-                  <img
-                    src="./images/circle.svg"
-                    class="card-img-absolute"
-                    alt="circle-image"
-                  />
-                  <h4 className="font-weight-normal mb-3">
-                    Yesterday's Order{" "}
-                    <i className="mdi mdi-chart-line mdi-24px float-right"></i>
-                  </h4>
-                  <h2 className="mb-5">
-                    <CountUp end={yesterday} duration={1} />
-                  </h2>
+              <Link to="/order">
+                <div className="card bg-gradient-info card-img-holder text-white">
+                  <div className="card-body">
+                    <img
+                      src="./images/circle.svg"
+                      class="card-img-absolute"
+                      alt="circle-image"
+                    />
+                    <h4 className="font-weight-normal mb-3">
+                      Yesterday's Order{" "}
+                      <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                    </h4>
+                    <h2 className="mb-5">
+                      <CountUp end={yesterday} duration={1} />
+                    </h2>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="col-md-4 col-12 mt-2">
-              <div className="card bg-gradient-success card-img-holder text-white">
-                <div className="card-body">
-                  <img
-                    src="./images/circle.svg"
-                    class="card-img-absolute"
-                    alt="circle-image"
-                  />
-                  <h4 className="font-weight-normal mb-3">
-                    Total Order{" "}
-                    <i className="mdi mdi-chart-line mdi-24px float-right"></i>
-                  </h4>
-                  <h2 className="mb-5">
-                    <CountUp end={orders.length} duration={1} />
-                  </h2>
+              <Link to="/order">
+                <div className="card bg-gradient-success card-img-holder text-white">
+                  <div className="card-body">
+                    <img
+                      src="./images/circle.svg"
+                      class="card-img-absolute"
+                      alt="circle-image"
+                    />
+                    <h4 className="font-weight-normal mb-3">
+                      Total Order{" "}
+                      <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                    </h4>
+                    <h2 className="mb-5">
+                      <CountUp end={orders.length} duration={1} />
+                    </h2>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
           <nav aria-label="breadcrumb" className="pathhistory mt-3">
