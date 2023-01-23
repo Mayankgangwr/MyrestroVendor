@@ -33,12 +33,25 @@ const Orders = () => {
       axios
         .post("https://sattasafari.com/restro/order/update.php", productdata)
         .then(function (response) {
-          alert(response.data.message);
+          //alert(response.data.message);
           getOrd();
         });
     }
   };
-
+  const getBill = (id) => {
+    const productdata = {
+      productid: id,
+      productstatus: "Complete",
+    };
+    if (productdata.productstatus !== "") {
+      axios
+        .post("https://sattasafari.com/restro/order/update.php", productdata)
+        .then(function (response) {
+          //alert(response.data.message);
+          getOrd();
+        });
+    }
+  };
   return (
     <>
       <main style={{ marginTop: "58px" }}>
@@ -132,8 +145,6 @@ const Orders = () => {
                         >
                           <option value={el.status}>{el.status}</option>
                           <option value="Accepted">Accepted</option>
-                          <option value="Out of Stock">Out of Stock</option>
-                          <option value="Cancel">Cancel</option>
                           <option value="Preparing">Preparing</option>
                           <option value="Ready To Serve">Ready To Serve</option>
                         </select>
@@ -149,6 +160,7 @@ const Orders = () => {
                       </div>
                       <div className="col-2 mt-1">
                         <button
+                          onClick={() => getBill(el.id)}
                           type="button"
                           className="btn btn-primary btn-sm btn-rounded"
                         >
