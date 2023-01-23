@@ -11,6 +11,7 @@ import AddCat from "./addcategory";
 import AddPro from "./addproduct";
 import UpdateCat from "./updatecat";
 import EditPro from "./updatepro";
+import Pending from "./pending";
 import axios from "axios";
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
           <Route index element={<Loginform />} />
           <Route path="/" element={<Sidebar />}>
             <Route path="dashboard" element={<Home />} />
-            <Route path="order" element={<Orders />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="order/:status" element={<Pending />} />
             <Route path="categories" element={<Category />} />
             <Route path="products" element={<Products />} />
             <Route path="addcat" element={<AddCat />} />

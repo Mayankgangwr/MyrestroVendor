@@ -1,11 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { ReadOrder } from "./action/index";
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
+
 import "./order.css";
 import { useSelector, useDispatch } from "react-redux";
-const Orders = () => {
+const Pending = () => {
   const orderdata = useSelector((state) => state.OrderData);
   const dispatch = useDispatch();
+  const param = useParams();
+  const navigate = useNavigate();
+  if (
+    param.status != "preparing" &&
+    param.status != "ontable" &&
+    param.status != "pending" &&
+    param.status != "accepted" &&
+    param.status != "ready" &&
+    param.status != ""
+  ) {
+    navigate("/");
+  }
+  var online = navigator.onLine;
+  if (!online) {
+    // Showing alert when connection is available
+    //$("#message").show().html("Connected!");
+    alert("No connection available");
+    Window.close();
+  }
   useEffect(() => {
     getOrd();
   }, []);
@@ -52,6 +73,14 @@ const Orders = () => {
         });
     }
   };
+  const current = new Date();
+  const cdate = `${current.getFullYear()}-0${
+    current.getMonth() + 1
+  }-${current.getDate()}`;
+
+  const pendingord = orderdata.filter((item) => {
+    return item.date == cdate && item.status == param.status;
+  });
   return (
     <>
       <main style={{ marginTop: "58px" }}>
@@ -69,7 +98,7 @@ const Orders = () => {
             </ol>
           </nav>
           <div className="blockborder row">
-            {orderdata.map((el) => (
+            {pendingord.map((el) => (
               <div
                 key={el.id}
                 className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
@@ -80,7 +109,9 @@ const Orders = () => {
                       <h5 className="card-title text-primary">
                         {el.client_name}
                       </h5>
-                      <h6 className="card-title text-danger">{el.status}</h6>
+                      <h6 className="card-title text-capitalized text-danger">
+                        {el.status == "ontable" ? "On Table" : el.status}
+                      </h6>
                     </div>
                   </div>
                   <div className="card-body p-2 mb-2">
@@ -172,10 +203,15 @@ const Orders = () => {
                 </div>
               </div>
             ))}
+            {pendingord.length == 0 && (
+              <h4 className="text-center mt-2">
+                There is no Data. <br />
+              </h4>
+            )}
           </div>
         </div>
       </main>
     </>
   );
 };
-export default Orders;
+export default Pending;

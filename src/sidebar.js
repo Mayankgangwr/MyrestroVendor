@@ -64,6 +64,19 @@ function Sidebar() {
               </NavLink>
               <NavLink
                 activeClassName="active"
+                to="/order/preparing"
+                className="list-group-item list-group-item-action side-item-p ripple"
+              >
+                <img
+                  src="https://s3uk4s-3000.preview.csb.app/images/order.png"
+                  width="18"
+                  className="sidebar-icon"
+                />
+                <span className="font-size">Preparing Order</span>
+              </NavLink>
+
+              <NavLink
+                activeClassName="active"
                 to="/order/ready"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
@@ -100,7 +113,7 @@ function Sidebar() {
               </NavLink>
               <NavLink
                 activeClassName="active"
-                to="/order"
+                to="/orders"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
