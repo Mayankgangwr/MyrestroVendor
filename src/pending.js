@@ -21,15 +21,10 @@ const Pending = () => {
   ) {
     navigate("/");
   }
-  var online = navigator.onLine;
-  if (!online) {
-    // Showing alert when connection is available
-    //$("#message").show().html("Connected!");
-    alert("No connection available");
-    Window.close();
-  }
   useEffect(() => {
-    getOrd();
+    setTimeout(() => {
+      getOrd();
+    }, 1000);
   });
   function getOrd() {
     const data = {
@@ -38,6 +33,9 @@ const Pending = () => {
     axios
       .post("https://sattasafari.com/restro/order/read.php", data)
       .then(function (response) {
+        if (orderdata === response.data) {
+          alert("accepted");
+        }
         dispatch(ReadOrder(response.data));
       });
   }

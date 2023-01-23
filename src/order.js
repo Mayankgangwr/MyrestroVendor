@@ -80,7 +80,9 @@ const Orders = () => {
                       <h5 className="card-title text-primary">
                         {el.client_name}
                       </h5>
-                      <h6 className="card-title text-danger">{el.status}</h6>
+                      <h6 className="card-title text-danger">
+                        {el.status == "ontable" ? "On Table" : el.status}
+                      </h6>
                     </div>
                   </div>
                   <div className="card-body p-2 mb-2">
