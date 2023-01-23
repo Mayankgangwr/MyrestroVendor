@@ -38,9 +38,9 @@ function Sidebar() {
                 />
                 <span className="font-size">Dashboard</span>
               </NavLink>
-              <a
+              <NavLink
                 activeClassName="active"
-                href="/order/pending"
+                to="/order/pending"
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
