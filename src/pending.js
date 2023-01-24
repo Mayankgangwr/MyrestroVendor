@@ -27,15 +27,11 @@ const Pending = () => {
     }, 1000);
   });
   function getOrd() {
-    const data = {
-      restroid: localStorage.getItem("restroid"),
-    };
+
     axios
-      .post("https://sattasafari.com/restro/order/read.php", data)
+      .get({`https://sattasafari.com/restro/order/read.php?restroid=${localStorage.getItem("restroid")}`})
       .then(function (response) {
-        if (orderdata === response.data) {
-          alert("accepted");
-        }
+        console.log(response.data);
         dispatch(ReadOrder(response.data));
       });
   }
