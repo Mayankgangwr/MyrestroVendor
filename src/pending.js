@@ -28,11 +28,9 @@ const Pending = () => {
   });
   function getOrd() {
     const restroid = localStorage.getItem("restroid");
-    console.log(restroid);
     axios
       .get(`https://sattasafari.com/restro/order/read.php?restroid=${restroid}`)
       .then(function (response) {
-        console.log(response.data);
         dispatch(ReadOrder(response.data));
       });
   }
