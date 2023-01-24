@@ -10,12 +10,12 @@ const Orders = () => {
     getOrd();
   }, []);
   function getOrd() {
-    const data = {
-      restroid: localStorage.getItem("restroid"),
-    };
+    const restroid = localStorage.getItem("restroid");
+    console.log(restroid);
     axios
-      .post("https://sattasafari.com/restro/order/read.php", data)
+      .get(`https://sattasafari.com/restro/order/read.php?restroid=${restroid}`)
       .then(function (response) {
+        console.log(response.data);
         dispatch(ReadOrder(response.data));
       });
   }
