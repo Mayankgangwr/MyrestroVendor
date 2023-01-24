@@ -13,6 +13,7 @@ import UpdateCat from "./updatecat";
 import EditPro from "./updatepro";
 import Pending from "./pending";
 import axios from "axios";
+import Bill from "./bill";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="editcat/:id" element={<UpdateCat />} />
             <Route path="addpro/:catid" element={<AddPro />} />
             <Route path="editpro/:proid" element={<EditPro />} />
+            <Route path="bill/:ordid" element={<Bill />} />
           </Route>
         </Routes>
       </BrowserRouter>

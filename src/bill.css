@@ -1,0 +1,9 @@
+.sidebar-icon {
+  margin-right: 1rem !important;
+  margin-top: -4px !important;
+  padding: 6px 0;
+}
+.main-bill {
+  flex: 0 0 auto;
+  width: 320px;
+}

@@ -56,7 +56,7 @@ const Pending = () => {
   const getBill = (id) => {
     const productdata = {
       productid: id,
-      productstatus: "Complete",
+      productstatus: "complete",
     };
     if (productdata.productstatus !== "") {
       axios
@@ -64,6 +64,7 @@ const Pending = () => {
         .then(function (response) {
           //alert(response.data.message);
           getOrd();
+          navigate(`/bill/${id}`);
         });
     }
   };
