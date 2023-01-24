@@ -26,7 +26,6 @@ function Sidebar() {
           <div className="position-sticky">
             <div className="list-group list-group-flush mt-1">
               <NavLink
-                exact
                 activeClassName="active py-2"
                 to="/dashboard"
                 className="list-group-item list-group-item-action side-item-p ripple"
