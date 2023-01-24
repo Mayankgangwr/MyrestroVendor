@@ -147,8 +147,8 @@ const Orders = () => {
                         >
                           <option value={el.status}>{el.status}</option>
                           <option value="accepted">Accepted</option>
-                          <option value="preparing">Preparing</option>
                           <option value="ready">Ready To Serve</option>
+                          <option value="preparing">Preparing</option>
                         </select>
                       </div>
                       <div className="col-2 mt-1">
