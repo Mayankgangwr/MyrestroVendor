@@ -5,11 +5,17 @@
 }
 .main-bill {
   flex: 0 0 auto;
-  width: 320px;
+  max-width: 320px;
+}
+.mainbillclass {
+  margin-top: 58px;
 }
 @media print {
   .hide-on-print {
     display: none;
+  }
+  .mainbillclass {
+    margin-top: 0px;
   }
   header {
     display: none;
