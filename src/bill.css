@@ -7,3 +7,11 @@
   flex: 0 0 auto;
   width: 320px;
 }
+@media print {
+  .hide-on-print {
+    display: none;
+  }
+  header {
+    display: none;
+  }
+}

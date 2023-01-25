@@ -18,6 +18,9 @@ const Bill = () => {
         setBilldata(response.data[0]);
       });
   }
+  const printReceipt = () => {
+    window.print();
+  };
   return (
     <>
       <main style={{ marginTop: "58px" }}>
@@ -41,51 +44,57 @@ const Bill = () => {
                 <table>
                   <thead>
                     <tr>
-                      <td className="">
+                      <td className="px-3">
                         <b>Name</b>
                       </td>
-                      <td className="">
+                      <td className="px-3">
                         <b>Qty</b>
                       </td>
-                      <td className="">
+                      <td className="px-3">
                         <b>Price</b>
                       </td>
-                      <td className="">
+                      <td className="px-3">
                         <b>Total</b>
                       </td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="">Hot Coffee</td>
-                      <td className="">2</td>
-                      <td className="">100</td>
-                      <td className="">200</td>
+                      <td className="px-3">Hot Coffee</td>
+                      <td className="px-3">2</td>
+                      <td className="px-3">100</td>
+                      <td className="px-3">200</td>
                     </tr>
                     <tr>
-                      <td className="">Veg Pizza</td>
-                      <td className="">2</td>
-                      <td className="">150</td>
-                      <td className="">300</td>
+                      <td className="px-3">Veg Pizza</td>
+                      <td className="px-3">2</td>
+                      <td className="px-3">150</td>
+                      <td className="px-3">300</td>
                     </tr>
                     <hr />
                     <tr className="my-2">
-                      <td className="">
+                      <td className="px-3">
                         <b>Qty</b>
                       </td>
-                      <td className="">
+                      <td className="px-3">
                         <b>4</b>
                       </td>
-                      <td className="">
+                      <td className="px-3">
                         <b>Amount</b>
                       </td>
-                      <td className="">
+                      <td className="px-3">
                         <b>500</b>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+              <button
+                class="btn btn-primary hide-on-print"
+                onClick={printReceipt}
+              >
+                Print
+              </button>
             </div>
           </div>
         </div>
