@@ -3,6 +3,7 @@ import "./sidebar.css";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 function Sidebar() {
   const [auth, setAuth] = useState("");
+  const [hideshow, setHideshow] = useState("d-none");
   const navigate = useNavigate();
   useEffect(() => {
     var emaildata = localStorage.getItem("restrotitle");
@@ -11,6 +12,13 @@ function Sidebar() {
       navigate("/");
     }
   });
+  const handleSidebar = () => {
+    if (hideshow === "d-none") {
+      setHideshow("d-block");
+    } else {
+      setHideshow("d-none");
+    }
+  };
   const LogOut = () => {
     localStorage.removeItem("restrotitle");
     localStorage.removeItem("restroid");
@@ -21,13 +29,14 @@ function Sidebar() {
       <header>
         <nav
           id="sidebarMenu"
-          className="collapse d-lg-block sidebar collapse bg-white"
+          className={`collapse d-lg-block sidebar collapse bg-white ${hideshow}`}
         >
           <div className="position-sticky">
             <div className="list-group list-group-flush mt-1">
               <NavLink
                 activeClassName="active py-2"
                 to="/dashboard"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -40,6 +49,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/order/pending"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -52,6 +62,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/order/accepted"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -64,6 +75,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/order/preparing"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -77,6 +89,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/order/ready"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -89,6 +102,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/order/ontable"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -101,6 +115,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/order/complete"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -113,6 +128,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/orders"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -126,6 +142,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/categories"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -138,6 +155,7 @@ function Sidebar() {
               <NavLink
                 activeClassName="active"
                 to="/products"
+                onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
                 <img
@@ -158,6 +176,7 @@ function Sidebar() {
             <button
               className="navbar-toggler"
               type="button"
+              onClick={handleSidebar}
               data-mdb-toggle="collapse"
               data-mdb-target="#sidebarMenu"
               aria-controls="sidebarMenu"
