@@ -22,3 +22,9 @@ export const ReadCategory = (data) => {
     payload: data,
   };
 };
+export const ReadNotification = (data) => {
+  return {
+    type: "ReadNotification",
+    payload: data,
+  };
+};

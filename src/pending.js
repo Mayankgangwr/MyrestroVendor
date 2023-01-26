@@ -103,9 +103,14 @@ const Pending = () => {
               >
                 <div className="card  card-item ">
                   <div className="card-header ms-1 pb-0">
-                    <h5 className="card-title text-center text-warning">
-                      {el.client_name}
-                    </h5>
+                    <div className="d-flex justify-content-between mt-2">
+                      <h5 className="card-title text-center text-warning">
+                        {`${el.client_name}`}
+                      </h5>
+                      <h5 className="card-title text-center text-warning">
+                        {`Table No: ${el.tableno}`}
+                      </h5>
+                    </div>
                     <div className="d-flex justify-content-between mt-2">
                       <h6 className="card-title text-primary mt-2">
                         {el.date}

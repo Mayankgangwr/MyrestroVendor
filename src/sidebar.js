@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./sidebar.css";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 function Sidebar() {
   const [auth, setAuth] = useState("");
+  const [notification, setNotification] = useState();
   const [hideshow, setHideshow] = useState("d-none");
+  const [lastid, setLastid] = useState(1);
   const navigate = useNavigate();
   useEffect(() => {
     var emaildata = localStorage.getItem("restrotitle");
@@ -24,6 +27,27 @@ function Sidebar() {
     localStorage.removeItem("restroid");
     navigate("/");
   };
+  useEffect(() => {
+    setTimeout(() => {
+      getNotOrd();
+    }, 1000);
+  });
+  function getNotOrd() {
+    const restroid = localStorage.getItem("restroid");
+    const current = new Date();
+    const cdate = `${current.getFullYear()}-0${
+      current.getMonth() + 1
+    }-${current.getDate()}`;
+    axios
+      .get(`https://sattasafari.com/restro/order/read.php?restroid=${restroid}`)
+      .then(function (response) {
+        const newdata = response.data.filter((item) => {
+          return item.status == "pending";
+        });
+        ReadNotification
+        setNotification(newdata);
+      });
+  }
   return (
     <>
       <header>
@@ -214,11 +238,13 @@ function Sidebar() {
                   className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Some news
-                    </a>
-                  </li>
+                  {notification.map((ele) => (
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Another news
+                      </a>
+                    </li>
+                  ))}
                   <li>
                     <a className="dropdown-item" href="#">
                       Another news
