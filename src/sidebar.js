@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./sidebar.css";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 function Sidebar() {
   const [auth, setAuth] = useState("");
-  const [notification, setNotification] = useState();
   const [hideshow, setHideshow] = useState("d-none");
-  const [lastid, setLastid] = useState(1);
   const navigate = useNavigate();
   useEffect(() => {
     var emaildata = localStorage.getItem("restrotitle");
@@ -27,27 +26,7 @@ function Sidebar() {
     localStorage.removeItem("restroid");
     navigate("/");
   };
-  useEffect(() => {
-    setTimeout(() => {
-      getNotOrd();
-    }, 1000);
-  });
-  function getNotOrd() {
-    const restroid = localStorage.getItem("restroid");
-    const current = new Date();
-    const cdate = `${current.getFullYear()}-0${
-      current.getMonth() + 1
-    }-${current.getDate()}`;
-    axios
-      .get(`https://sattasafari.com/restro/order/read.php?restroid=${restroid}`)
-      .then(function (response) {
-        const newdata = response.data.filter((item) => {
-          return item.status == "pending";
-        });
-        ReadNotification
-        setNotification(newdata);
-      });
-  }
+
   return (
     <>
       <header>
@@ -220,80 +199,10 @@ function Sidebar() {
             </a>
 
             <ul className="navbar-nav ms-auto d-flex flex-row">
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-mdb-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i className="fas fa-bell"></i>
-                  <span className="badge rounded-pill badge-notification bg-danger">
-                    1
-                  </span>
-                </a>
-                <ul
-                  className="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  {notification.map((ele) => (
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another news
-                      </a>
-                    </li>
-                  ))}
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another news
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-mdb-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                    className="rounded-circle"
-                    height="22"
-                    alt="Avatar"
-                    loading="lazy"
-                  />
-                </a>
-                <ul
-                  className="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      My profile
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={LogOut} className="dropdown-item" href="#">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
+              <li className="nav-item">
+                <button onClick={LogOut} className="btn btn-primary">
+                  <i class="fas fa-sign-out-alt"></i>
+                </button>
               </li>
             </ul>
           </div>
@@ -303,5 +212,4 @@ function Sidebar() {
     </>
   );
 }
-
 export default Sidebar;
