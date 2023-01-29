@@ -13,7 +13,7 @@ const Bill = () => {
     const restroid = localStorage.getItem("restroid");
     axios
       .get(
-        `https://sattasafari.com/restro/order/single.php?ordid=${params.ordid}`
+        `${process.env.REACT_APP_BASEURL}/restro/order/single.php?ordid=${params.ordid}`
       )
       .then(function (response) {
         setBilldata(response.data);

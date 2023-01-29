@@ -24,7 +24,7 @@ const Loginform = () => {
   const Login = (e) => {
     e.preventDefault();
     axios
-      .post("https://sattasafari.com/restro/login.php", data)
+      .post(`${process.env.REACT_APP_BASEURL}/restro/login.php`, data)
       .then(function (response) {
         if (response.data.message == "200") {
           alert("You have Login SuccessFully");

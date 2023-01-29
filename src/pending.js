@@ -29,7 +29,9 @@ const Pending = () => {
   function getOrd() {
     const restroid = localStorage.getItem("restroid");
     axios
-      .get(`https://sattasafari.com/restro/order/read.php?restroid=${restroid}`)
+      .get(
+        `${process.env.REACT_APP_BASEURL}/restro/order/read.php?restroid=${restroid}`
+      )
       .then(function (response) {
         dispatch(ReadOrder(response.data));
       });
@@ -46,7 +48,10 @@ const Pending = () => {
     };
     if (productdata.productstatus !== "") {
       axios
-        .post("https://sattasafari.com/restro/order/update.php", productdata)
+        .post(
+          `${process.env.REACT_APP_BASEURL}/restro/order/update.php`,
+          productdata
+        )
         .then(function (response) {
           //alert(response.data.message);
           getOrd();
@@ -60,7 +65,10 @@ const Pending = () => {
     };
     if (productdata.productstatus !== "") {
       axios
-        .post("https://sattasafari.com/restro/order/update.php", productdata)
+        .post(
+          `${process.env.REACT_APP_BASEURL}/restro/order/update.php`,
+          productdata
+        )
         .then(function (response) {
           //alert(response.data.message);
           getOrd();

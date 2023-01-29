@@ -27,7 +27,7 @@ const Products = () => {
       restroid: localStorage.getItem("restroid"),
     };
     axios
-      .post("https://sattasafari.com/restro/product/read.php", data)
+      .post(`${process.env.REACT_APP_BASEURL}/restro/product/read.php`, data)
       .then(function (response) {
         console.log(response.data);
         if (response.data.message == "No record found.") {
@@ -41,7 +41,7 @@ const Products = () => {
       restroid: localStorage.getItem("restroid"),
     };
     axios
-      .post("https://sattasafari.com/restro/category/read.php", data)
+      .post(`${process.env.REACT_APP_BASEURL}/restro/category/read.php`, data)
       .then(function (response) {
         setCategory(response.data);
       });
@@ -75,7 +75,10 @@ const Products = () => {
         dataid: dataid,
       };
       axios
-        .post("https://sattasafari.com/restro/product/delete.php", data)
+        .post(
+          `${process.env.REACT_APP_BASEURL}/restro/product/delete.php`,
+          data
+        )
         .then(function (response) {
           getPro();
         });

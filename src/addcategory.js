@@ -15,7 +15,10 @@ const AddCat = () => {
     e.preventDefault();
     if (catdata.catname !== "") {
       axios
-        .post("https://sattasafari.com/restro/category/create.php", catdata)
+        .post(
+          `${process.env.REACT_APP_BASEURL}/restro/category/create.php`,
+          catdata
+        )
         .then(function (response) {
           alert(response.data.message);
           if ((response.data.message = "Data Added")) {

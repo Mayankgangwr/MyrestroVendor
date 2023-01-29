@@ -17,7 +17,7 @@ const AddPro = () => {
       restroid: localStorage.getItem("restroid"),
     };
     axios
-      .post("https://sattasafari.com/restro/category/read.php", data)
+      .post(`${process.env.REACT_APP_BASEURL}/restro/category/read.php`, data)
       .then(function (response) {
         dispatch(ReadCategory(response.data));
       });
@@ -43,7 +43,10 @@ const AddPro = () => {
     e.preventDefault();
     if (prodata.proname !== "") {
       axios
-        .post("https://sattasafari.com/restro/product/create.php", prodata)
+        .post(
+          `${process.env.REACT_APP_BASEURL}/restro/product/create.php`,
+          prodata
+        )
         .then(function (response) {
           alert(response.data.message);
           if ((response.data.message = "Data Added")) {

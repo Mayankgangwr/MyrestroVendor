@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
 import { useSelector, useDispatch } from "react-redux";
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
 const Category = () => {
   const categorydata = useSelector((state) => state.CategoryData);
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Category = () => {
       restroid: localStorage.getItem("restroid"),
     };
     axios
-      .post("https://sattasafari.com/restro/category/read.php", data)
+      .post(`${process.env.REACT_APP_BASEURL}/restro/category/read.php`, data)
       .then(function (response) {
         dispatch(ReadCategory(response.data));
       });
@@ -38,7 +38,10 @@ const Category = () => {
         dataid: dataid,
       };
       axios
-        .post("https://sattasafari.com/restro/category/delete.php", data)
+        .post(
+          `${process.env.REACT_APP_BASEURL}/restro/category/delete.php`,
+          data
+        )
         .then(function (response) {
           getCat();
         });
