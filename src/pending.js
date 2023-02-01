@@ -86,7 +86,6 @@ const Pending = () => {
   const cdate = `${current.getFullYear()}-0${
     current.getMonth() + 1
   }-${currdate}`;
-  console.log(cdate);
 
   const pendingord = orderdata.filter((item) => {
     return item.status == param.status;
