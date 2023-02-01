@@ -55,12 +55,22 @@ const Home = () => {
   }
 
   const current = new Date();
+  let currdate;
+  let lastdate;
+  if (current.getDate() < 10) {
+    currdate = `0${current.getDate()}`;
+    lastdate = `0${current.getDate() - 1}`;
+  } else {
+    currdate = `${current.getDate()}`;
+    lastdate = `${current.getDate() - 1}`;
+  }
   const cdate = `${current.getFullYear()}-0${
     current.getMonth() + 1
-  }-${current.getDate()}`;
-  const ldate = `${current.getFullYear()}-0${current.getMonth() + 1}-${
-    current.getDate() - 1
-  }`;
+  }-${currdate}`;
+  console.log(cdate);
+  const ldate = `${current.getFullYear()}-0${
+    current.getMonth() + 1
+  }-${lastdate}`;
 
   let curr = 0;
   orders.map((item) => {

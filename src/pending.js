@@ -77,9 +77,16 @@ const Pending = () => {
     }
   };
   const current = new Date();
+  let currdate;
+  if (current.getDate() < 10) {
+    currdate = `0${current.getDate()}`;
+  } else {
+    currdate = `${current.getDate()}`;
+  }
   const cdate = `${current.getFullYear()}-0${
     current.getMonth() + 1
-  }-${current.getDate()}`;
+  }-${currdate}`;
+  console.log(cdate);
 
   const pendingord = orderdata.filter((item) => {
     return item.status == param.status;
