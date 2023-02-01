@@ -88,7 +88,7 @@ const Pending = () => {
   }-${currdate}`;
 
   const pendingord = orderdata.filter((item) => {
-    return item.status == param.status;
+    return item.status == param.status && item.date == cdate;
   });
   return (
     <>

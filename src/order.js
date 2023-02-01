@@ -46,7 +46,7 @@ const Orders = () => {
   const getBill = (id) => {
     const productdata = {
       productid: id,
-      productstatus: "Complete",
+      productstatus: "complete",
     };
     if (productdata.productstatus !== "") {
       axios
