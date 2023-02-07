@@ -12,13 +12,14 @@
 }
 .discountp {
   display: none;
+  text-align: end;
 }
 .discountinput {
-  display: block;
+  display: table-cell;
 }
 @media print {
   .discountp {
-    display: block;
+    display: table-cell;
   }
   .discountinput {
     display: none;

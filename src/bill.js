@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./bill.css";
 const Bill = () => {
-  const [discount, setDiscount] = useState("");
+  const [discount, setDiscount] = useState(0);
   const params = useParams();
   const [billdata, setBilldata] = useState([]);
   const navigate = useNavigate();
@@ -89,10 +89,11 @@ const Bill = () => {
                             <b>Discount</b>
                           </td>
                           <td className="px-3"></td>
-                          <td className="px-3 discountp"></td>
-                          <td className="px-3 discountp">
+                          <td colSpan="2" className="px-3 ms-auto discountp">
                             {" "}
-                            <b className="text-end">{discountamount}</b>
+                            <b style={{ marginRight: "26px" }}>
+                              {discountamount}
+                            </b>
                           </td>
                           <td colSpan="2" className="px-3 discountinput">
                             <input
