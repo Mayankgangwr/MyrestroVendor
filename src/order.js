@@ -84,7 +84,7 @@ const Orders = () => {
     <>
       <main style={{ marginTop: "58px" }}>
         <div
-          className="d-flex justify-content-start w-100"
+          className="d-flex justify-content-start w-100  pt-1 pb-2"
           style={{ overflowX: "scroll" }}
         >
           <button
