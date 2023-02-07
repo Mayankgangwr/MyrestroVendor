@@ -106,7 +106,10 @@ const Pending = () => {
   return (
     <>
       <main style={{ marginTop: "58px" }}>
-        <div className="d-flex justify-content-start w-100">
+        <div
+          className="d-flex justify-content-start w-100"
+          style={{ overflowX: "scroll" }}
+        >
           <button
             onClick={() => {
               setBtns({
@@ -243,7 +246,7 @@ const Pending = () => {
               </li>
             </ol>
           </nav>*/}
-          <div className="blockborder row">
+          <div className="row">
             {pendingord.map((el) => (
               <div
                 key={el.id}

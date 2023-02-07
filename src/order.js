@@ -85,7 +85,7 @@ const Orders = () => {
       <main style={{ marginTop: "58px" }}>
         <div
           className="d-flex justify-content-start w-100"
-          style={{ overflowX: "hidden" }}
+          style={{ overflowX: "scroll" }}
         >
           <button
             onClick={() => {
