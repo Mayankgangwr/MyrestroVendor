@@ -82,10 +82,10 @@ const Orders = () => {
 
   return (
     <>
-      <main style={{ marginTop: "58px" }}>
+      <main style={{ marginTop: "110px" }}>
         <div
-          className="d-flex justify-content-start w-100  pt-1 pb-2"
-          style={{ overflowX: "scroll" }}
+          className="d-flex justify-content-start w-100  pt-1 pb-2  fixed-top"
+          style={{ overflowX: "scroll", marginTop: "58px" }}
         >
           <button
             onClick={() => {
