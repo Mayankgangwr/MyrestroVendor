@@ -23,7 +23,7 @@ function App() {
           <Route index element={<Loginform />} />
           <Route path="/" element={<Sidebar />}>
             <Route path="dashboard" element={<Home />} />
-            <Route path="orders" element={<Orders />} />
+            <Route path="order" element={<Orders />} />
             <Route path="order/:status" element={<Pending />} />
             <Route path="categories" element={<Category />} />
             <Route path="products" element={<Products />} />

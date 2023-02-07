@@ -1,23 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { ReadOrder } from "./action/index";
 import axios from "axios";
+import { Link, useParams, useNavigate } from "react-router-dom";
+
 import "./order.css";
 import { useSelector, useDispatch } from "react-redux";
 const Orders = () => {
+  const [btns, setBtns] = useState({
+    all: "btn-primary",
+    pending: "btn-primary",
+    accepted: "btn-primary",
+    ready: "btn-primary",
+    ontable: "btn-primary",
+    preparing: "btn-primary",
+    complete: "btn-primary",
+  });
   const orderdata = useSelector((state) => state.OrderData);
   const dispatch = useDispatch();
+  const param = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
-    getOrd();
+    setTimeout(() => {
+      getOrd();
+    }, 1000);
+  });
+  useEffect(() => {
+    const val = param.status;
+    setBtns({ ...btns, [param.status]: "btn-info" });
   }, []);
+
   function getOrd() {
     const restroid = localStorage.getItem("restroid");
-    console.log(restroid);
     axios
       .get(
         `${process.env.REACT_APP_BASEURL}/restro/order/read.php?restroid=${restroid}`
       )
       .then(function (response) {
-        console.log(response.data);
         dispatch(ReadOrder(response.data));
       });
   }
@@ -57,25 +75,151 @@ const Orders = () => {
         .then(function (response) {
           //alert(response.data.message);
           getOrd();
+          navigate(`/bill/${id}`);
         });
     }
   };
+
   return (
     <>
       <main style={{ marginTop: "58px" }}>
-        <div className="container-fluid pt-4">
-          <nav aria-label="breadcrumb" className="pathhistory">
+        <div className="d-flex justify-content-start w-100">
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-info",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order");
+            }}
+            className={`btn btn-info btn-custom me-1`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-info",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order/pending");
+            }}
+            className={`btn ${btns.pending} btn-custom me-1`}
+          >
+            Pending
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-info",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order/accepted");
+            }}
+            className={`btn ${btns.accepted} btn-custom me-1`}
+          >
+            Accepted
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-info",
+              });
+              navigate("/order/preparing");
+            }}
+            className={`btn ${btns.preparing} btn-custom me-1`}
+          >
+            Preparing
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-info",
+              });
+              navigate("/order/ready");
+            }}
+            className={`btn ${btns.ready} btn-custom me-1`}
+          >
+            Ready
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-info",
+              });
+              navigate("/order/ontable");
+            }}
+            className={`btn ${btns.ontable} btn-custom me-1`}
+          >
+            OnTable
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-info",
+              });
+              navigate("/order/complete");
+            }}
+            className={`btn ${btns.complete} btn-custom me-1`}
+          >
+            Complete
+          </button>
+        </div>
+        <div className="container-fluid">
+          {/*<nav aria-label="breadcrumb" className="pathhistory">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <a href="#" className="nav-link">
                   <i className="fas fa-globe small me-2"></i> Dashboard
                 </a>
               </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                Orders
+              <li
+                className="breadcrumb-item text-capitalized active"
+                aria-current="page"
+              >
+                {`${param.status} Orders`}
               </li>
             </ol>
-          </nav>
+          </nav>*/}
           <div className="blockborder row">
             {orderdata.map((el) => (
               <div
@@ -84,11 +228,19 @@ const Orders = () => {
               >
                 <div className="card  card-item ">
                   <div className="card-header ms-1 pb-0">
-                    <div className="d-flex justify-content-between">
-                      <h5 className="card-title text-primary">
-                        {el.client_name}
+                    <div className="d-flex justify-content-between mt-2">
+                      <h5 className="card-title text-center text-warning">
+                        {`${el.client_name}`}
                       </h5>
-                      <h6 className="card-title text-danger">
+                      <h5 className="card-title text-center text-warning">
+                        {`Table No: ${el.tableno}`}
+                      </h5>
+                    </div>
+                    <div className="d-flex justify-content-between mt-2">
+                      <h6 className="card-title text-primary mt-2">
+                        {el.date}
+                      </h6>
+                      <h6 className="card-title text-capitalized  mt-2 text-danger">
                         {el.status == "ontable" ? "On Table" : el.status}
                       </h6>
                     </div>
@@ -182,6 +334,11 @@ const Orders = () => {
                 </div>
               </div>
             ))}
+            {orderdata.length == 0 && (
+              <h4 className="text-center mt-2">
+                There is no Data. <br />
+              </h4>
+            )}
           </div>
         </div>
       </main>

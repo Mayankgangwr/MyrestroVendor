@@ -51,7 +51,7 @@ function Sidebar() {
               </NavLink>
               <NavLink
                 activeClassName="active"
-                to="/order/pending"
+                to="/order"
                 onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >
@@ -60,86 +60,7 @@ function Sidebar() {
                   width="18"
                   className="sidebar-icon"
                 />
-                <span className="font-size">Pending Order</span>
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                to="/order/accepted"
-                onClick={handleSidebar}
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/order.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">Accepted Order</span>
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                to="/order/preparing"
-                onClick={handleSidebar}
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/order.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">Preparing Order</span>
-              </NavLink>
-
-              <NavLink
-                activeClassName="active"
-                to="/order/ready"
-                onClick={handleSidebar}
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/order.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">Ready Order</span>
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                to="/order/ontable"
-                onClick={handleSidebar}
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/order.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">Order On Table</span>
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                to="/order/complete"
-                onClick={handleSidebar}
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/order.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">Complete Orders</span>
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                to="/orders"
-                onClick={handleSidebar}
-                className="list-group-item list-group-item-action side-item-p ripple"
-              >
-                <img
-                  src="https://s3uk4s-3000.preview.csb.app/images/order.png"
-                  width="18"
-                  className="sidebar-icon"
-                />
-                <span className="font-size">All Orders</span>
+                <span className="font-size">Orders</span>
               </NavLink>
 
               <NavLink

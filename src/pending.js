@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { ReadOrder } from "./action/index";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import "./order.css";
 import { useSelector, useDispatch } from "react-redux";
 const Pending = () => {
+  const [btns, setBtns] = useState({
+    all: "btn-primary",
+    pending: "btn-primary",
+    accepted: "btn-primary",
+    ready: "btn-primary",
+    ontable: "btn-primary",
+    preparing: "btn-primary",
+    complete: "btn-primary",
+  });
   const orderdata = useSelector((state) => state.OrderData);
   const dispatch = useDispatch();
   const param = useParams();
@@ -26,6 +35,10 @@ const Pending = () => {
       getOrd();
     }, 1000);
   });
+  useEffect(() => {
+    const val = param.status;
+    setBtns({ ...btns, [param.status]: "btn-info" });
+  }, []);
   function getOrd() {
     const restroid = localStorage.getItem("restroid");
     axios
@@ -93,8 +106,129 @@ const Pending = () => {
   return (
     <>
       <main style={{ marginTop: "58px" }}>
-        <div className="container-fluid pt-4">
-          <nav aria-label="breadcrumb" className="pathhistory">
+        <div className="d-flex justify-content-start w-100">
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-info",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order");
+            }}
+            className={`btn ${btns.all} btn-custom me-1`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-info",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order/pending");
+            }}
+            className={`btn ${btns.pending} btn-custom me-1`}
+          >
+            Pending
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-info",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order/accepted");
+            }}
+            className={`btn ${btns.accepted} btn-custom me-1`}
+          >
+            Accepted
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-info",
+              });
+              navigate("/order/preparing");
+            }}
+            className={`btn ${btns.preparing} btn-custom me-1`}
+          >
+            Preparing
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-info",
+                ontable: "btn-primary",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order/ready");
+            }}
+            className={`btn ${btns.ready} btn-custom me-1`}
+          >
+            Ready
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-info",
+                complete: "btn-primary",
+                preparing: "btn-primary",
+              });
+              navigate("/order/ontable");
+            }}
+            className={`btn ${btns.ontable} btn-custom me-1`}
+          >
+            OnTable
+          </button>
+          <button
+            onClick={() => {
+              setBtns({
+                all: "btn-primary",
+                pending: "btn-primary",
+                accepted: "btn-primary",
+                ready: "btn-primary",
+                ontable: "btn-primary",
+                complete: "btn-info",
+                preparing: "btn-primary",
+              });
+              navigate("/order/complete");
+            }}
+            className={`btn ${btns.complete} btn-custom me-1`}
+          >
+            Complete
+          </button>
+        </div>
+        <div className="container-fluid">
+          {/*<nav aria-label="breadcrumb" className="pathhistory">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <a href="#" className="nav-link">
@@ -108,7 +242,7 @@ const Pending = () => {
                 {`${param.status} Orders`}
               </li>
             </ol>
-          </nav>
+          </nav>*/}
           <div className="blockborder row">
             {pendingord.map((el) => (
               <div

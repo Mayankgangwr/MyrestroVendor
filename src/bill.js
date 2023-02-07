@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./bill.css";
 const Bill = () => {
+  const [discount, setDiscount] = useState("");
   const params = useParams();
   const [billdata, setBilldata] = useState([]);
   const navigate = useNavigate();
@@ -23,7 +24,15 @@ const Bill = () => {
     window.print();
     // console.log("printed");
   };
-
+  const [discountamount, setDiscountamount] = useState(0);
+  const HandleDiscount = (e) => {
+    setDiscount(e.target.value);
+    if (e.target.value !== "" && e.target.value !== 0) {
+      setDiscountamount(e.target.value);
+    } else {
+      setDiscountamount(0);
+    }
+  };
   return (
     <>
       <main class="mainbillclass">
@@ -74,6 +83,27 @@ const Bill = () => {
                           </tr>
                         ))}
                         <hr />
+
+                        <tr className="my-2">
+                          <td className="px-3">
+                            <b>Discount</b>
+                          </td>
+                          <td className="px-3"></td>
+                          <td className="px-3 discountp"></td>
+                          <td className="px-3 discountp">
+                            {" "}
+                            <b className="text-end">{discountamount}</b>
+                          </td>
+                          <td colSpan="2" className="px-3 discountinput">
+                            <input
+                              type="number"
+                              value={discount}
+                              className="form-control w-100"
+                              onChange={HandleDiscount}
+                              placeholder={`Enter Discount`}
+                            />
+                          </td>
+                        </tr>
                         <tr className="my-2">
                           <td className="px-3">
                             <b>Qty</b>
@@ -92,7 +122,15 @@ const Bill = () => {
                             <b>
                               {JSON.parse(el.products).reduce((total, item) => {
                                 return total + item.qty * item.price;
-                              }, 0)}
+                              }, 0) -
+                                (JSON.parse(el.products).reduce(
+                                  (total, item) => {
+                                    return total + item.qty * item.price;
+                                  },
+                                  0
+                                ) *
+                                  discountamount) /
+                                  100}
                             </b>
                           </td>
                         </tr>
