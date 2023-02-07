@@ -220,7 +220,7 @@ const Orders = () => {
               </li>
             </ol>
           </nav>*/}
-          <div className="blockborder row">
+          <div className="row">
             {orderdata.map((el) => (
               <div
                 key={el.id}

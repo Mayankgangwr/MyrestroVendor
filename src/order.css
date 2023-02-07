@@ -1,14 +1,14 @@
 @media screen and (max-width: 425px) {
   .btn-custom {
-    padding-left: 3px;
-    padding-right: 3px;
-    font-size: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 11px;
   }
 }
 @media screen and (max-width: 650px) {
   .btn-custom {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 7px;
+    padding-right: 7px;
     font-size: 15px;
   }
 }
