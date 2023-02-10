@@ -91,8 +91,16 @@ const Bill = () => {
                           <td className="px-3"></td>
                           <td colSpan="2" className="px-3 ms-auto discountp">
                             {" "}
-                            <b style={{ marginRight: "26px" }}>
-                              {discountamount}
+                            <b style={{ marginRight: "0px" }}>
+                              ₹
+                              {(JSON.parse(el.products).reduce(
+                                (total, item) => {
+                                  return total + item.qty * item.price;
+                                },
+                                0
+                              ) *
+                                discountamount) /
+                                100}
                             </b>
                           </td>
                           <td colSpan="2" className="px-3 discountinput">
