@@ -51,7 +51,7 @@ function Sidebar() {
               </NavLink>
               <NavLink
                 activeClassName="active"
-                to="/order"
+                to="/order/all"
                 onClick={handleSidebar}
                 className="list-group-item list-group-item-action side-item-p ripple"
               >

@@ -159,9 +159,9 @@ const Products = () => {
                           <div className="col-12 d-flex justify-content-between">
                             <div>
                               <span className="price sale-price pe-2">
-                                ${el.price}
+                                ₹{el.price}
                               </span>
-                              <span className="price mrp">${el.mrp}</span>
+                              <span className="price mrp">₹{el.mrp}</span>
                             </div>
                             <Link to={`/editpro/${el.id}`}>
                               <i className="fas fa-edit pro-icon mt-1 me-1"></i>

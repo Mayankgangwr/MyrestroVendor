@@ -78,8 +78,8 @@ const Bill = () => {
                           <tr key={item.id}>
                             <td className="px-3">{item.title}</td>
                             <td className="px-3">{item.qty}</td>
-                            <td className="px-3">{item.price}</td>
-                            <td className="px-3">{item.qty * item.price}</td>
+                            <td className="px-3">₹{item.price}</td>
+                            <td className="px-3">₹{item.qty * item.price}</td>
                           </tr>
                         ))}
                         <hr />
@@ -121,6 +121,7 @@ const Bill = () => {
                           </td>
                           <td className="px-3">
                             <b>
+                              ₹
                               {JSON.parse(el.products).reduce((total, item) => {
                                 return total + item.qty * item.price;
                               }, 0) -
