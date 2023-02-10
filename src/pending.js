@@ -26,6 +26,7 @@ const Pending = () => {
     param.status != "pending" &&
     param.status != "accepted" &&
     param.status != "ready" &&
+    param.status != "all" &&
     param.status != ""
   ) {
     navigate("/");
@@ -101,6 +102,9 @@ const Pending = () => {
   }-${currdate}`;
 
   const pendingord = orderdata.filter((item) => {
+    if (param.status === "all") {
+      return item;
+    }
     return item.status == param.status && item.date == cdate;
   });
   return (
@@ -121,7 +125,7 @@ const Pending = () => {
                 complete: "btn-primary",
                 preparing: "btn-primary",
               });
-              navigate("/order");
+              navigate("/order/all");
             }}
             className={`btn ${btns.all} btn-custom me-1`}
           >
