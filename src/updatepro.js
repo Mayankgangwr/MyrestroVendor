@@ -27,11 +27,16 @@ const EditPro = () => {
   const catobj = proupdata.filter((item) => {
     return item.id == proid;
   });
+  console.log(
+    proupdata.filter((item) => {
+      return item.id == proid;
+    })
+  );
   const [prodata, setProdata] = useState({
     restroid: localStorage.getItem("restroid"),
     proid: catobj[0].id,
     proname: catobj[0].title,
-    procatid: proid,
+    procatid: catobj[0].cat_id,
     proimg: catobj[0].img,
     promrp: catobj[0].mrp,
     proprice: catobj[0].price,
@@ -77,7 +82,11 @@ const EditPro = () => {
             <div className="row mx-2 d-flex justify-content-center pt-4">
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-8 col-12">
                 <div className="form-outline my-2">
-                  <select className="form-control border">
+                  <select
+                    className="form-control border"
+                    name="procatid"
+                    onChange={handleChange}
+                  >
                     {catdata.map(({ id, title }) => {
                       if (id == proid) {
                         return <option value={id}>{title}</option>;
