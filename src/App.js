@@ -12,6 +12,7 @@ import AddPro from "./addproduct";
 import UpdateCat from "./updatecat";
 import EditPro from "./updatepro";
 import Pending from "./pending";
+import FileUploadSingle from "./upload";
 import axios from "axios";
 import Bill from "./bill";
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="editpro/:proid" element={<EditPro />} />
             <Route path="bill/:ordid" element={<Bill />} />
           </Route>
+          <Route path="upload" element={<FileUploadSingle />} />
         </Routes>
       </BrowserRouter>
     </>
